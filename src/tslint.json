@@ -1,0 +1,40 @@
+{
+    "extends": "../tslint.json",
+    "rules": {
+        "directive-selector": [
+            true,
+            "attribute",
+            "app",
+            "camelCase"
+        ],
+        "component-selector": [
+            true,
+            "element",
+            "app",
+            "kebab-case"
+		],
+		"no-trailing-whitespace": false,
+		"one-line": [
+			true,
+			"check-open-brace",
+			"check-catch",
+			"check-else",
+			"check-whitespace"
+		  ],
+		  "no-var-keyword": true,
+		  "comment-format": [
+			true,
+			"check-space"
+		  ],
+		  "whitespace": [
+			true,
+			"check-branch",
+			"check-decl",
+			"check-operator",
+			"check-separator",
+			"check-type"
+		  ],
+		  "quotemark": false,
+		  "prefer-const": false,
+    }
+}

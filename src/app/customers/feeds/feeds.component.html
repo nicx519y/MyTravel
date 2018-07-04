@@ -1,0 +1,16 @@
+
+<div class="swiper-container" >
+	<swiper [(index)]="swiperIndex" [config]="swiperConfig"  >
+		<div class="swiper-slider" *ngFor="let item of swiperData" >
+			<app-img [src]="item.image" ></app-img>
+		</div>
+	</swiper>
+</div>	
+<div class="swiper-content-text" >
+	{{swiperText}}
+</div>
+<div class="feeds-item-container" >
+	<app-feeds-item *ngFor="let item of feedsData" [title]="item.title" [imageSrc]="item.image"  ></app-feeds-item>
+</div>
+
+

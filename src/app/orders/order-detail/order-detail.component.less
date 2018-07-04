@@ -1,0 +1,82 @@
+
+:host {
+	display: grid;
+	grid-template-rows: 1fr auto;
+	height: 100%;
+}
+
+.scroll-container {
+	overflow-y: auto;
+}
+
+.label {
+	font-size: 1em;
+	line-height: 2em;
+	font-weight: bold;
+	color: #333;
+}
+
+.value {
+	font-size: 1em;
+	line-height: 2em;
+}
+
+.field {
+	display: flex;
+	flex-direction: row;
+}
+
+.field .label {
+	flex-grow: 0;
+	width: 7em;
+}
+
+.field .value {
+	flex-grow: 1;
+}
+
+.rich-field {
+	display: flex;
+	flex-direction: column;
+}
+
+.weui-panel:last-child {
+	margin-bottom: 14px;
+}
+
+.my-form {
+	font-size: .9em;
+	line-height: 2.6em;
+}
+
+.my-form .weui-input {
+	font-size: 1em;
+	height: 2.8em;
+	line-height: 2.6em;
+}
+
+.commit-button {
+	display: grid;
+	grid-template-columns: 1fr 8em;
+	background: #fff;
+	border-top: solid 1px #e5e5e5;
+}
+
+.commit-button .label {
+	line-height: 3em;
+	padding-right: 1em;
+	text-align: right;
+}
+
+.commit-button span {
+	color: red;
+	font-weight: bold;
+}
+
+.commit-button weui-button {
+	width: 100%;
+}
+
+.weui-cells {
+	margin-top: .8em;
+}

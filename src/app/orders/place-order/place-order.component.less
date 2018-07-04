@@ -1,0 +1,252 @@
+.grid {
+	display: grid;
+	height: 100%;
+}
+
+.scroll-container {
+	overflow-y: auto;
+}
+
+.swiper-container {
+	// min-height: 200px;
+	background: #e5e5e5;
+	position: relative;
+	margin: 0;
+	overflow: hidden;
+	width: calc(100vw - 30px);
+	height: calc((100vw - 30px) * 0.9);
+}
+
+.swiper-container app-img {
+	width: calc(100vw - 30px);
+	height: calc((100vw - 30px) * 0.9);
+	display: block;
+}
+
+.weui-panel__hd {
+	font-size: .9em;
+	line-height: 2em;
+}
+
+.flex-column {
+	display: flex;
+	flex-direction: column;
+}
+
+.flex-row {
+	// display: flex;
+	// flex-direction: row;
+	display: grid;
+	grid-template-columns: 6em auto;
+}
+
+.row-cell {
+	flex-grow: 1;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.product-duration {
+	text-align: right;
+}
+
+.product-target {
+	text-align: center;
+}
+
+.product-name {
+	font-weight: bold;
+	color: #333;
+}
+
+.product-price {
+	font-size: 1em;
+	font-weight: bold;
+	line-height: 2em;
+	color: red;
+}
+
+.label {
+	color: #333;
+	font-weight: bold;
+}
+
+
+.header {
+	display: grid;
+	grid-template-rows: auto auto;
+}
+
+.grid-row-3 {
+	display: grid;
+	grid-template-columns:  1fr 1fr 1fr;
+}
+
+.flex-row .label {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.flex-row .icon-container {
+	width: 4em;
+	text-align: center;
+	line-height: 0;
+	margin-top: .4em;
+}
+
+.albums .label {
+	color: #333;
+	font-weight: bold;
+	line-height: 2.2em;
+	height: 2.2em;
+}
+
+.albums .photo {
+	position: relative;
+	margin-bottom: .5em;
+}
+
+.albums .photo app-img {
+	display: block;
+	background: #eee;
+	width: calc(100vw - 30px);
+	height: calc((100vw - 30px) * 0.66);
+}
+.albums .photo-name {
+	position: absolute;
+	top: .5em;
+	right: .5em;
+	text-align: right;
+	color: #fff;
+}
+
+.buttons {
+	background: #fff;
+	display: flex;
+	flex-direction: row;
+}
+
+.place-button {
+	flex-grow: 1;
+	
+}
+
+.weui-panel {
+	overflow: inherit;
+}
+.cover {
+	width: 85px;
+	height: 85px;
+	position: absolute;
+	top: -1em;
+	left: 1em;
+	background: #fff;
+	border: solid 1px #999;
+	z-index: 100;
+	border-radius: .3em;
+	overflow: hidden;
+}
+
+.cover app-img {
+	display: block;
+	width: 85px;
+	height: 85px;
+}
+
+.info {
+	padding-left: 7em;
+}
+
+.order-commit {
+	background: #fff;
+}
+
+.order-commit .ng-star-inserted {
+	padding: 0;
+}
+
+.order-commit .flex-column  {
+	line-height: 2em;
+	padding: .5em 0;
+}
+
+.order-commit .flex-row {
+	line-height: 2em;
+	padding: .5em 0;
+}
+
+
+
+.order-commit h3 {
+	color: #333;
+	line-height: 1.5em;
+}
+
+.price {
+	color: red;
+	font-weight: bold;
+}
+
+.yacht app-choice-item + app-choice-item {
+	margin-left: .2em;
+}
+
+.yacht-image {
+	display: block;
+	width: 65px;
+	height: 65px;
+	display: block;
+	border: solid 2px #fff;
+	border-radius: 5px;
+	padding: 1px;
+}
+
+.active .yacht-image {
+	border: solid 2px red;
+}
+
+.yacht-name {
+	display: block;
+	width: 5.5em;
+	font-size: .5em;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	text-align: center;
+}
+
+.person-choice-item .choice-button {
+	display: inline-block;
+	border: solid 1px #ccc;
+	border-radius: .5em;
+	padding: 0 1em;
+}
+
+.person-choice-item + .person-choice-item {
+	margin-left: 1em;
+}
+.active .choice-button {
+	background-color: red;
+	border-color: red;
+	color: #fff;
+}
+
+.top-banner {
+	position: relative;
+}
+
+.top-banner .product-brief {
+	position: absolute;
+	top: .8em;
+	left: .9em;
+	font-size: 2em;
+	font-weight: bold;
+	color: #fff;
+	z-index: 100;
+	text-shadow:0 0 .1em #C06;
+	width: calc(100vw - 2em);
+}
+
+

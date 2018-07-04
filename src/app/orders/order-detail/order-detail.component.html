@@ -1,0 +1,69 @@
+<div class="scroll-container" *ngIf="isReady" >
+	<app-feeds-item [type]="type" [order]="formData" 
+		(changeStart)="onChangeStart()"
+		(changeEnd)="onChangeEnd($event)" ></app-feeds-item>
+	<form [formGroup]="myForm" >
+		<div class="weui-cells weui-cells_form my-form">
+			<div class="weui-cell">
+				<div class="weui-cell__hd">
+					<label>上船时刻：</label>
+				</div>
+				<div class="weui-cell__bd">
+					<weui-date-picker *ngIf="type==1" formControlName="boardingTime" placeholder="选择出行时间" type="datetime" [min]="dateTimeMin" [format]="dateTimeFormat" ></weui-date-picker>
+					<span *ngIf="type==2" >{{formData.boardingTime | date: dateTimeFormat}}</span>
+				</div>
+			</div>
+			<div class="weui-cell">
+				<div class="weui-cell__hd">
+					<label>联系人姓名：</label>
+				</div>
+				<div class="weui-cell__bd">
+					<input *ngIf="type==1" class="weui-input" formControlName="contactName"   type="text"  placeholder="请输入联系人姓名" weui-required />
+					<span *ngIf="type==2" >{{formData.contactName}}</span>
+				</div>
+			</div>
+			<div class="weui-cell">
+				<div class="weui-cell__hd">
+					<label>联系人电话：</label>
+				</div>
+				<div class="weui-cell__bd">
+					<input *ngIf="type==1" class="weui-input" formControlName="contactPhone"  type="tel" weui-input="mobile" placeholder="请输入手机号" weui-required />
+					<span *ngIf="type==2" >{{formData.contactPhone}}</span>
+				</div>
+			</div>
+			<div class="weui-cell">
+				<div class="weui-cell__hd">
+					<label>买家留言：</label>
+				</div>
+				<div class="weui-cell__bd">
+					<input *ngIf="type==1" class="weui-input" formControlName="buyerMessage"  type="text" placeholder="请输入留言"  />
+					<span *ngIf="type==2" >{{formData.buyerMessage}}</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="weui-cells weui-cells_form my-form">
+			<div class="weui-cell">
+				<div class="weui-cell__hd">
+					<label>上船地点：</label>
+				</div>
+				<div class="weui-cell__bd" [innerHTML]="formData.boardingLocation" ></div>
+			</div>
+		</div>
+
+		<div class="weui-cells weui-cells_form my-form">
+			<div class="weui-cell">
+				<div class="weui-cell__hd">
+					<label>退单规则：</label>
+				</div>
+				<div class="weui-cell__bd" [innerHTML]="formData.refundRule" ></div>
+			</div>
+		</div>
+
+	</form>
+</div>
+
+<div class="commit-button" *ngIf="isReady&&type==1"  >
+	<div class="label" >合计：<span>￥{{formData.totalPrice}}</span></div>
+	<weui-button (click)="onSubmit()" [weui-loading]="isLoading" [disabled]="!isLoading&&myForm.status!='VALID'" >提交订单</weui-button>
+</div>

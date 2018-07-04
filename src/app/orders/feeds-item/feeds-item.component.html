@@ -1,0 +1,46 @@
+<div class="weui-panel weui-panel_access" >
+	<div class="weui-panel__hd title-field">
+		<div class="product-type small-font nowrap-field" >
+			<i class="app-icon icon-zhutiyou" *ngIf="order.productInfo.productType==1" ></i>
+			<i class="app-icon icon-dingzhiyou" *ngIf="order.productInfo.productType==2" ></i>
+			{{ order.productInfo.productType | productType }}
+		</div>
+		<div class="order-status small-font nowrap-field" *ngIf="type==2" >{{ order.orderStatus | orderStatus }}</div>
+		<div class="order-id small-font" *ngIf="type==2" >订单编号：{{ order.orderId }}</div>
+		<div class="order-lefttime small-font" *ngIf="type==2" > 剩余
+			<app-countdown [leftTime]="order.leftTime" (finished)="countdownFinishedHandler" ></app-countdown>
+		</div>
+	</div>
+	<div class="weui-panel__bd">
+		<div class="weui-media-box weui-media-box_appmsg" >
+			<app-product-unit
+				[type]="type"
+				[name]="order.productInfo.productName"
+				[image]="order.productInfo.mainImage"
+				description="{{order.boardingTime | date: dateFormat}}，{{order.yacht.person}}人，{{order.yacht.name}}"
+				[num]="order.yacht.num"
+				[price]="order.basePrice"
+			></app-product-unit>
+		</div>
+		<div class="weui-media-box weui-media-box_appmsg" *ngIf="order.waterItems&&order.waterItems.length > 0" >
+			<app-product-unit
+				[type]="type"
+				[name]="'自费水上项目'"
+				[image]="order.waterItems[0].image"
+				[others]="order.waterItems"
+				[price]="order.extraPrice"
+				(change)="changeHandler($event)"
+			></app-product-unit>
+		</div>
+		<div class="weui-media-box total-price" >
+			<span class="label big-font" >合计：</span>
+			<span class="value big-font" >￥{{order.totalPrice}}</span>
+		</div>
+	</div>
+	<div class="weui-panel__ft"  >
+		<div class="weui-cell weui-cell_access weui-cell_link buttons" *ngIf="showButtonIsShow || payButtonIsShow" >
+			<weui-button class="min-button" weui-mini="mini" weui-type="default" *ngIf="showButtonIsShow"  (click)="showDetail()" >查看</weui-button>
+			<weui-button class="min-button" weui-mini="mini" weui-type="primary" *ngIf="payButtonIsShow"  >付款</weui-button>
+		</div>
+	</div>
+</div>

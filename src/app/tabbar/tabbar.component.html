@@ -1,0 +1,9 @@
+
+<weui-tabbar>
+	<weui-tab *ngFor="let item of config" 
+		heading="{{item.label}}"  
+		[icon]="getIcon(item.icon, item.match)"
+		(select)="tabSelectHandler(item.link, item.match)"
+		[active]="itemIsActive(item.match)"
+	></weui-tab>
+</weui-tabbar>

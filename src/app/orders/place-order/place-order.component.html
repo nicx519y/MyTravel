@@ -1,0 +1,145 @@
+<div  *ngIf="!!data" class="grid"  >
+	<div class="scroll-container" >
+		<div class="weui-panel weui-panel_access">
+			<div class="weui-panel__hd top-banner">
+				<div class="swiper-container">
+					<swiper *ngIf="!!data.swipeData" [config]="swiperConfig"  >
+						<div class="swiper-slider" *ngFor="let item of data.swipeData" >
+							<app-img [src]="item" ></app-img>
+						</div>
+					</swiper>
+				</div>
+				<div class="product-brief" >{{ data.productBrief }}</div>
+			</div>
+			<div class="weui-panel__hd header">
+				<div class="product-name bigger-font" >
+					{{data.productName}}
+				</div>
+				<div class="product-price" >
+					￥{{data.lowPrice}} - {{data.highPrice}}
+				</div>
+			</div>
+			<div class="weui-panel__hd grid-row-3">
+				<div class="product-theme" >
+					主题：{{data.topic}}
+				</div>
+				<div class="product-target" >
+					目的地：{{data.destation}}
+				</div>
+				<div class="product-duration" >
+					时长：{{data.duration}}小时
+				</div>
+			</div>
+		</div>
+		<div class="weui-panel weui-panel_access">
+			<div class="weui-panel__hd">
+				<div class="product-description" >{{data.description}}</div>
+			</div>
+			<div class="weui-panel__hd flex-row" *ngFor="let inst of data.instructions" >
+				<div class="label" >
+					<div class="icon-container" >
+						<i class="app-icon {{inst.icon}}" ></i>
+					</div>
+					{{inst.label}}
+				</div>
+				<div class="value" [innerHTML]="inst.value" ></div>
+			</div>
+		</div>
+
+		<div class="weui-panel weui-panel_access">
+			<div class="weui-panel__hd flex-row" >
+				<div class="label" >预定须知</div>
+				<div class="value" [innerHTML]="data.bookingTips" ></div>
+			</div>
+			<div class="weui-panel__hd flex-row" >
+				<div class="label" >退订规则</div>
+				<div class="value" [innerHTML]="data.refundRule" ></div>
+			</div>
+		</div>
+
+		<div class="weui-panel weui-panel_access albums"  >
+			<div class="weui-panel__hd flex-column">
+				<div class="label" >水上自费项目</div>
+				<div class="photo" *ngFor="let photo of data.waterItemList" >
+					<app-img src="{{photo.image}}" ></app-img>
+					<div class="photo-name" >{{photo.name}}</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="weui-panel weui-panel_access albums"  >
+			<div class="weui-panel__hd flex-column">
+				<div class="label" >游艇类型</div>
+				<div class="photo" *ngFor="let photo of data.yachtList" >
+					<app-img src="{{photo.image}}" ></app-img>
+					<div class="photo-name" >{{photo.name}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="buttons" >
+		<weui-button class="place-button" (click)="confirm()" [disabled]="!canOrder"  >立即预定</weui-button>
+	</div>
+</div>
+
+<weui-popup #commitPopup [config]="popupConfig" class="order-commit" >
+	
+	<div *ngIf="!!yachtList&&!!data" class="weui-panel weui-panel_access "  >
+		<div class="cover" >
+			<app-img width=85 height=85 src="{{data.mainImage}}" ></app-img>
+		</div>
+		<div class="weui-panel__hd order-top">
+			<div class="info" >
+				<h3>三亚 海钓观光3小时行程</h3>
+				<span class="price bigger-font" >￥{{price}}</span>
+			</div>
+		</div>
+		<div class="weui-panel__hd">
+			<div class="date flex-row" >
+				<div class="label" >出海日期：</div>
+				<div class="value" >
+					<weui-date-picker type="datetime" [(ngModel)]="boardingTime" [min]="minDateTime" placeholder="选择一个日期" format="{{dateTimeFormat}}" ></weui-date-picker>
+				</div>
+			</div>
+			<div class="type flex-column" >
+				<div class="label" >限载人数：</div>
+				<div class="value" >
+					<app-choice *ngIf="!!personList" #personTotal [(ngModel)]="currentYacht.person" (change)="personTotalChange($event)"  >
+						<app-choice-item *ngFor="let person of personList" 
+							[itemValue]="person" 
+							[activeValue]="personTotal.value||0" 
+							[canValue]="canPersonList"
+							class="person-choice-item" >
+							<div class="choice-button" >{{person}} 人</div>
+						</app-choice-item>
+					</app-choice>
+				</div>
+			</div>
+			<div class="yacht flex-column"  >
+				<div class="label" >游艇类型：</div>
+				<div class="value" >
+					<app-choice *ngIf="!!yachtList" #yachtChoice [(ngModel)]="currentYacht.id" (change)="yachtChange($event)"  >
+						<app-choice-item *ngFor="let yacht of yachtList; let i = index" 
+							[itemValue]="yacht.id" 
+							[activeValue]="yachtChoice.value"
+							[canValue]="canYachtIdList"
+						>
+							<app-img height=65 width=65 class="yacht-image" src="{{yacht.image}}" ></app-img>
+							<span class="yacht-name" >{{yacht.name}}</span>
+						</app-choice-item>
+					</app-choice>
+				</div>
+			</div>
+		</div>
+		<div class="weui-panel__hd">
+			<div class="flex-row" >
+				<div class="label" >预定数量：</div>
+				<div class="value" >
+					<weui-stepper *ngIf="!!currentYacht" (change)="numChange($event)" [min]="1" [step]="1" [(ngModel)]="currentYacht.num" ></weui-stepper>
+				</div>
+			</div>
+		</div>
+		<weui-button [disabled]="!canCommit()" (click)="commit()" >下一步</weui-button>
+	</div>
+</weui-popup>
+

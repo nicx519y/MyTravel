@@ -1,0 +1,13 @@
+<div class="container" >
+	<app-nav [config]="navConfig" ></app-nav>
+	<div class="content" >
+		<app-feeds-item *ngFor="let item of feedsData"
+			cover="{{item.mainImage}}"
+			title="{{item.productName}} | {{item.productBrief}}"
+			lowPrice="{{item.lowPrice}}"
+			highPrice="{{item.highPrice}}"
+			duration="{{item.duration}}"
+			link="/orders/place/{{item.productUuid}}"
+		></app-feeds-item>
+	</div>
+</div>
